@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pneumonia Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='pneumonia.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Pneumonia Detection</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="image">Upload Chest Scan:</label>
+        <input type="file" name="image" id="image" required>
+      </div>
+      <button type="submit">Predict</button>
+    </form>
+
+    <a href="/" class="back-button"><button type="button">Back to Home</button></a>
+
+    {% if image_url %}
+      <div class="image-container">
+        <h2>Uploaded Image:</h2>
+        <img src="{{ image_url }}" alt="Uploaded Image">
+      </div>
+    {% endif %}
+
+    {% if prediction %}
+      <div class="result-container">
+        <h2>Result:</h2>
+        <p class="result {% if 'pneumonia' in prediction|lower %}pneumonia{% endif %}">{{ prediction }}</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

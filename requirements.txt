@@ -1,0 +1,6 @@
+flask
+flask-cors
+google-generativeai
+tensorflow
+Pillow
+scikit-learn

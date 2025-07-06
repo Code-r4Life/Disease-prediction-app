@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disease Prediction App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Prediction</h1>
+        <p class="subtitle">Select a type of prediction below</p>
+        <div class="card">
+            <a href="/breast_cancer"><button>Breast Cancer (Tabular)</button></a>
+            <a href="/brain_tumor"><button>Brain Tumor (MRI)</button></a>
+            <a href="/pneumonia"><button>Pneumonia</button></a>
+        </div>
+    </div>
+
+    <!-- Chatbot widget -->
+    <div class="chatbox">
+        <div class="chatbox__support">
+            <div class="chatbox__header">
+                <div class="chatbox__image--header">
+                    <img src="{{ url_for('static', filename='Doctor_avatar.png') }}" alt="Chatbot Avatar" width="40px">
+                </div>
+                <div class="chatbox__content--header">
+                    <h4 class="chatbox__heading--header">Chat support</h4>
+                    <p class="chatbox__description--header">Hi. My name is Sam. How can I help you?</p>
+                </div>
+            </div>
+            <div class="chatbox__messages">
+                <div></div>
+            </div>
+            <div class="chatbox__footer">
+                <input type="text" placeholder="How can I assist you today?">
+                <button class="chatbox__send--footer send__button">Send</button>
+            </div>
+        </div>
+        <div class="chatbox__button">
+            <button><img src="{{ url_for('static', filename='chatbot.png') }}" width="40px" /></button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
