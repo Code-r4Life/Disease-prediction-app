@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diabetes Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='cancer.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Diabetes Risk Prediction</h1>
+
+    <form method="POST">
+      <!-- Gender -->
+      <div class="feature-group">
+        <h3>Gender</h3>
+        <div class="form-group">
+          <label>Select Gender</label>
+          <select name="gender" required>
+            <option value="">Choose...</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Smoking History -->
+      <div class="feature-group">
+        <h3>Smoking History</h3>
+        <div class="form-group">
+          <label>Smoking History</label>
+          <select name="smoking_history" required>
+            <option value="">Choose...</option>
+            <option value="never">Never</option>
+            <option value="former">Former</option>
+            <option value="current">Current</option>
+            <option value="not current">Not Current</option>
+            <option value="ever">Ever</option>
+            <option value="no info">No information</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Health Parameters -->
+      <div class="feature-group">
+        <h3>Health Parameters</h3>
+
+        <div class="form-group">
+          <label>Age</label>
+          <input type="range" min="0" max="120" step="1" oninput="sync(this)">
+          <input type="number" step="1" name="age" required>
+        </div>
+
+        <div class="form-group">
+          <label>Hypertension</label>
+          <div>
+            <input type="radio" name="hypertension" value="0" required> No
+            <input type="radio" name="hypertension" value="1"> Yes
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Heart Disease</label>
+          <div>
+            <input type="radio" name="heart_disease" value="0" required> No
+            <input type="radio" name="heart_disease" value="1"> Yes
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>BMI</label>
+          <input type="range" min="10" max="60" step="0.1" oninput="sync(this)">
+          <input type="number" step="0.1" name="bmi" required>
+        </div>
+
+        <div class="form-group">
+          <label>HbA1c Level</label>
+          <input type="range" min="3" max="15" step="0.1" oninput="sync(this)">
+          <input type="number" step="0.1" name="HbA1c_level" required>
+        </div>
+
+        <div class="form-group">
+          <label>Blood Glucose Level</label>
+          <input type="range" min="50" max="400" step="1" oninput="sync(this)">
+          <input type="number" step="1" name="blood_glucose_" required>
+        </div>
+      </div>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <a href="/" class="back-button"><button type="button">Back to Home</button></a>
+
+    {% if prediction %}
+    <div class="result-container">
+      <h2>Result:</h2>
+      <p class="result">{{ prediction }}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    function sync(slider) {
+      const number = slider.nextElementSibling;
+      number.value = slider.value;
+    }
+  </script>
+</body>
+</html>

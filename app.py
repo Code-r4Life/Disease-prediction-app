@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from utils.tumor_model_loader import load_model_tf, predict_brain_tumor
 from utils.breast_model_loader import load_breast_model, preprocess_breast_input, predict_breast_cancer
 from utils.pneumonia_model_loader import load_model2_tf, predict_pneumonia
+from utils.diabetes_model_loader import load_diabetes_model, preprocess_diabetes_input, predict_diabetes
 from dotenv import load_dotenv
 from flask_cors import CORS
 import os
@@ -20,6 +21,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 brain_model = load_model_tf("models/BrainTumor10epochs_categorical.keras")
 breast_model, breast_scaler = load_breast_model("models/BreastCancer_model.pkl", "models/BreastCancer_scaler.pkl")
 pneumonia_model = load_model2_tf("models/pneumonia10epochs_categorical.keras")
+diabetes_model = load_diabetes_model("models/diabetes_model.joblib")
 
 static_path = 'static/uploads/Brain Tumor'
 static_path2 = 'static/uploads/Pneumonia'
@@ -112,6 +114,16 @@ def pneumonia():
         image_url = '/static/uploads/Pneumonia/' + image.filename
         prediction = predict_pneumonia(pneumonia_model, image_path)
     return render_template('pneumonia.html', image_url=image_url, prediction=prediction)
+
+@app.route('/diabetes', methods=['GET', 'POST'])
+def diabetes():
+    if request.method == 'POST':
+        expected_columns = ["gender", "age", "hypertension", "heart_disease", "smoking_history", "bmi", "HbA1c_level", "blood_glucose_"]
+        form_data = request.form
+        input_dict = preprocess_diabetes_input(form_data, expected_columns)
+        result = predict_diabetes(diabetes_model, input_dict)
+        return render_template('diabetes.html', prediction=result)
+    return render_template('diabetes.html')
 
 @app.route("/predict", methods=["POST"])
 def predict():
