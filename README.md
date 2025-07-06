@@ -46,9 +46,6 @@ This web-based health assistant predicts the likelihood of multiple diseases—*
 ---
 
 ```markdown
-![Home Page](assets/homepage.png)
-![Diabetes Form](assets/diabetes_form.png)
-![Prediction Result](assets/prediction_result.png)
 🚀 How to Run
 Clone the repo:
 
