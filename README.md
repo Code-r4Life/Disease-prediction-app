@@ -1,7 +1,7 @@
 # 🧬 Disease Prediction Web Application
 
 ### 👨‍💻 Developed by:  
-**Shinjan Saha** & Team
+**Shinjan Saha**, **Satyabrata Das Adhikari** and **Abesh Chakraborty**
 
 ---
 
@@ -52,7 +52,7 @@ Clone the repo:
 bash
 Copy
 Edit
-git clone https://github.com/yourusername/disease-prediction-app.git
+git clone https://github.com/Code-r4Life/Disease-prediction-app.git
 Navigate to the project folder:
 
 bash
