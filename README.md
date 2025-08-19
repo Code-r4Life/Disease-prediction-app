@@ -7,18 +7,19 @@
 
 ## 🧠 Project Overview
 
-This web-based health assistant predicts the likelihood of multiple diseases—**Breast Cancer**, **Brain Tumor**, **Pneumonia**, and **Diabetes**—based on user input. Built using **Flask**, **Machine Learning**, and enhanced with a **Gemini-powered AI chatbot**, this system offers quick and interactive diagnostics support.
+This web-based health assistant predicts the likelihood of multiple diseases—**Breast Cancer**, **Brain Tumor**, **Pneumonia**, **Diabetes**, and **Heart Disease**—based on user input. Built using **Flask**, **Machine Learning**, and enhanced with a **Gemini-powered AI chatbot**, this system offers quick and interactive diagnostics support.
 
 ---
 
 ## 🙌 Contribution Highlights
 
-- **Shinjan Saha**  
+- **Shinjan Saha**
+  - Built and trained model for heart disease detection 
   - Integrated all trained ML models into the Flask backend  
   - Created interactive and user-friendly forms for tabular predictions  
   - Integrated Gemini API to add a smart chatbot assistant  
 
-- **Team Members**  
+- **Fellow team members**  
   - Built and trained models for diabetes, breast cancer, pneumonia, and brain tumor detection  
   - Preprocessed datasets and saved model pipelines using `joblib`  
   - Supported UI testing and feedback integration
@@ -27,7 +28,7 @@ This web-based health assistant predicts the likelihood of multiple diseases—*
 
 ## 💻 Features
 
-- 🔍 Predicts 4 diseases from medical data or uploaded images  
+- 🔍 Predicts 5 diseases from medical data or uploaded images  
 - 📊 Tabular form inputs with sliders, dropdowns, and radio buttons  
 - 🧠 Gemini chatbot for symptom-based health conversations  
 - 💾 Model files saved using `joblib` for seamless deployment  
