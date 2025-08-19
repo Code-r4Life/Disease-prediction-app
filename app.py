@@ -3,6 +3,7 @@ from utils.tumor_model_loader import load_model_tf, predict_brain_tumor
 from utils.breast_model_loader import load_breast_model, preprocess_breast_input, predict_breast_cancer
 from utils.pneumonia_model_loader import load_model2_tf, predict_pneumonia
 from utils.diabetes_model_loader import load_diabetes_model, preprocess_diabetes_input, predict_diabetes
+from utils.heart_model_loader import load_heart_model, preprocess_heart_input, predict_heart
 from dotenv import load_dotenv
 from flask_cors import CORS
 import os
@@ -22,6 +23,7 @@ brain_model = load_model_tf("models/BrainTumor10epochs_categorical.keras")
 breast_model, breast_scaler = load_breast_model("models/BreastCancer_model.pkl", "models/BreastCancer_scaler.pkl")
 pneumonia_model = load_model2_tf("models/pneumonia10epochs_categorical.keras")
 diabetes_model = load_diabetes_model("models/diabetes_model.joblib")
+heart_model = load_heart_model("models/stacking_model.pkl")
 
 static_path = 'static/uploads/Brain Tumor'
 static_path2 = 'static/uploads/Pneumonia'
@@ -124,6 +126,16 @@ def diabetes():
         result = predict_diabetes(diabetes_model, input_dict)
         return render_template('diabetes.html', prediction=result)
     return render_template('diabetes.html')
+
+@app.route('/heart_disease', methods=['GET', 'POST'])
+def heart_disease():
+    if request.method == 'POST':
+        expected_columns = ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal"]
+        form_data = request.form
+        input_dict = preprocess_heart_input(form_data, expected_columns)
+        result = predict_heart(heart_model, input_dict)
+        return render_template('heart_disease.html', prediction=result)
+    return render_template('heart_disease.html')
 
 @app.route("/predict", methods=["POST"])
 def predict():

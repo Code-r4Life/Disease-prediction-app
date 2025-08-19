@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heart Disease Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='cancer.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Heart Disease Prediction</h1>
+
+    <form method="POST">
+      <!-- Demographics -->
+      <div class="feature-group">
+        <h3>Demographics</h3>
+
+        <div class="form-group">
+          <label>Age</label>
+          <input type="range" min="1" max="120" step="1" oninput="sync(this)">
+          <input type="number" name="age" min="1" max="120" required>
+        </div>
+
+        <div class="form-group">
+          <label>Sex</label>
+          <div>
+            <input type="radio" name="sex" value="0" required> Female
+            <input type="radio" name="sex" value="1"> Male
+          </div>
+        </div>
+      </div>
+
+      <!-- Chest Pain -->
+      <div class="feature-group">
+        <h3>Chest Pain</h3>
+        <div class="form-group">
+          <label>Chest Pain Type</label>
+          <div>
+            <input type="radio" name="cp" value="0" required> No Pain
+            <input type="radio" name="cp" value="1"> Mild
+            <input type="radio" name="cp" value="2"> Moderate
+            <input type="radio" name="cp" value="3"> Severe
+          </div>
+        </div>
+      </div>
+
+      <!-- Health Parameters -->
+      <div class="feature-group">
+        <h3>Health Parameters</h3>
+
+        <div class="form-group">
+          <label>Resting Blood Pressure</label>
+          <input type="range" min="50" max="250" step="1" oninput="sync(this)">
+          <input type="number" name="trestbps" required>
+        </div>
+
+        <div class="form-group">
+          <label>Serum Cholesterol (mg/dl)</label>
+          <input type="range" min="100" max="600" step="1" oninput="sync(this)">
+          <input type="number" name="chol" required>
+        </div>
+
+        <div class="form-group">
+          <label>Fasting Blood Sugar > 120 mg/dl</label>
+          <div>
+            <input type="radio" name="fbs" value="1" required> Yes
+            <input type="radio" name="fbs" value="0"> No
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Resting ECG Results</label>
+          <div>
+            <input type="radio" name="restecg" value="0" required> Normal
+            <input type="radio" name="restecg" value="1"> ST-T abnormality
+            <input type="radio" name="restecg" value="2"> Left Ventricular Hypertrophy
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Maximum Heart Rate Achieved</label>
+          <input type="range" min="60" max="220" step="1" oninput="sync(this)">
+          <input type="number" name="thalach" required>
+        </div>
+
+        <div class="form-group">
+          <label>Exercise Induced Angina</label>
+          <div>
+            <input type="radio" name="exang" value="1" required> Yes
+            <input type="radio" name="exang" value="0"> No
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Oldpeak (ST Depression, max 6.2)</label>
+          <input type="range" min="0" max="6.2" step="0.1" oninput="sync(this)">
+          <input type="number" step="0.1" name="oldpeak" required>
+        </div>
+
+        <div class="form-group">
+          <label>Slope of Peak Exercise ST Segment</label>
+          <div>
+            <input type="radio" name="slope" value="0" required> Upsloping
+            <input type="radio" name="slope" value="1"> Flat
+            <input type="radio" name="slope" value="2"> Downsloping
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Number of Major Vessels (0–3)</label>
+          <input type="range" min="0" max="3" step="1" oninput="sync(this)">
+          <input type="number" name="ca" required>
+        </div>
+
+        <div class="form-group">
+          <label>Thal</label>
+          <div>
+            <input type="radio" name="thal" value="0" required> Normal
+            <input type="radio" name="thal" value="1"> Fixed Defect
+            <input type="radio" name="thal" value="2"> Reversible Defect
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <a href="/" class="back-button"><button type="button">Back to Home</button></a>
+
+    {% if prediction %}
+    <div class="result-container">
+      <h2>Result:</h2>
+      <p class="result">{{ prediction }}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    function sync(slider) {
+      const number = slider.nextElementSibling;
+      number.value = slider.value;
+    }
+  </script>
+</body>
+</html>
